@@ -1,14 +1,23 @@
-.footer {
-    padding: $separacion / 2 0;
-    background: $grisOscuro;
+@use "sass:math";
 
-    .contenido-footer {
+.footer {
+    padding: $separacion / 2 0 ;
+    background-color: $grisOscuro;
+    margin-bottom: 0;
+
+    .contenedor-footer {
         padding-top: $separacion / 2;
     }
+
+    .navegacion {
+        visibility: visible;
+        opacity: 1;
+        height: auto;
+    }
+
     .copyright {
-        text-align: center;
         color: $blanco;
-        font-size: 1.4rem;
-        margin-bottom: $separacion / 2;
+        text-align: center;
     }
 }
+
