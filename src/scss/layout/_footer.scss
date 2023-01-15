@@ -1,0 +1,14 @@
+.footer {
+    padding: $separacion / 2 0;
+    background: $grisOscuro;
+
+    .contenido-footer {
+        padding-top: $separacion / 2;
+    }
+    .copyright {
+        text-align: center;
+        color: $blanco;
+        font-size: 1.4rem;
+        margin-bottom: $separacion / 2;
+    }
+}
