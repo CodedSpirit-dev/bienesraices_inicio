@@ -19,7 +19,7 @@ function darkMode() {
         } else {
             document.body.classList.remove('dark-mode');
         }
-    };
+    });
 
     const botonDarkMode = document.querySelector('.dark-mode-boton');
     botonDarkMode.addEventListener('click', function() {
