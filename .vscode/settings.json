@@ -1,0 +1,7 @@
+{
+    "emulator.androidColdBoot": false,
+    "github.copilot.advanced": {
+    
+    },
+    "debug.console.acceptSuggestionOnEnter": "on"
+}
