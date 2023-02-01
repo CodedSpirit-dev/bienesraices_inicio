@@ -3,5 +3,6 @@
     "github.copilot.advanced": {
     
     },
-    "debug.console.acceptSuggestionOnEnter": "on"
+    "debug.console.acceptSuggestionOnEnter": "on",
+    "sqltools.connections": []
 }
