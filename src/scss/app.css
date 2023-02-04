@@ -424,6 +424,38 @@ h4 {
   cursor: pointer;
 }
 
+.boton-rojo-block {
+  background-color: rgb(226, 58, 58);
+  color: #FFFFFF;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 1rem 3rem;
+  text-align: center;
+  margin-top: 2.5rem;
+  display: block;
+  border: none;
+}
+.boton-rojo-block:hover {
+  background-color: #df2424;
+  cursor: pointer;
+}
+
+.boton-verde-block {
+  background-color: #71B100;
+  color: #FFFFFF;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 1rem 3rem;
+  text-align: center;
+  margin-top: 2.5rem;
+  display: block;
+  border: none;
+}
+.boton-verde-block:hover {
+  background-color: #619800;
+  cursor: pointer;
+}
+
 .dark-mode {
   background-color: #1a1a1a;
 }
@@ -835,4 +867,20 @@ h4 {
 }
 .alerta.exito {
   background-color: #71B100;
+}
+
+table.propiedades {
+  margin-top: 4rem;
+  width: 100%;
+  border-spacing: 0;
+}
+table.propiedades thead {
+  background-color: #71B100;
+}
+table.propiedades thead th {
+  color: #FFFFFF;
+  padding: 2rem;
+}
+table.propiedades .imagen-tabla {
+  width: 10rem;
 }/*# sourceMappingURL=app.css.map */

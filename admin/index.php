@@ -1,7 +1,19 @@
 <?php
+    //Importa la conexion
+    require '../includes/config/database.php';
+    $db = conectarDB();
+
+    //Escribe el query
+    $query = "SELECT * FROM propiedades";
+
+    //Consultar la BD
+    $resultadoConsulta = mysqli_query($db, $query);
 
 
+  //Muestra mensaje condicional
 $resultado = $_GET['resultado'] ?? null;
+
+//Incluye un template
     require '../includes/funciones.php';
     incluirTemplate('header', $inicio = false);
 ?>
@@ -25,22 +37,26 @@ $resultado = $_GET['resultado'] ?? null;
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody>
+
+            <tbody> <!-- Mostrar los resultados -->
+            <?php while($propiedad = mysqli_fetch_assoc($resultadoConsulta) ): ?>
                 <tr>
-                    <td>1</td>
-                    <td>Casa en el Lago</td>
-                    <td><img src="/build/img/anuncio1.jpg" class="imagen" alt="anuncio1"></td>
-                    <td>$3,000,000</td>
+                    <td><?php echo $propiedad['id'] ?></td>
+                    <td><?php echo $propiedad['titulo'] ?></td>
+                    <td><img src="/imagenes/<?php echo $propiedad['imagen']; ?>" class="imagen-tabla" alt="anuncio1"></td>
+                    <td>$ <?php echo $propiedad['precio']; ?></td>
                     <td>
-                        <form method="POST" class="w-100">
-                            <input type="hidden" value="1" name="id">
-                            <input type="submit" class="boton-rojo-block" value="Eliminar">
-                        </form>
-                        <a href="/admin/propiedades/actualizar.php?id=1" class="boton-amarillo-block">Actualizar</a>
+                        <a href="#" class="boton-rojo-block">Eliminar</a>
+                        <a href="#" class="boton-verde-block">Actualizar</a>
+                    </td>
                 </tr>
+            <?php endwhile; ?>
             </tbody>
         </table>
 
     <?php
+
+    //Cerrar la conexion
+    mysqli_close($db);
     incluirTemplate('footer');
     ?>
