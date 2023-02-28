@@ -1,0 +1,1 @@
+SELECT * FROM bienesraices_crud.propiedades;
