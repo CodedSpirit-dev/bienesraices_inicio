@@ -89,7 +89,7 @@
         }
 
         // Validar por tamaño (1mb máximo)
-        $medida = 1000 * 1000;
+        $medida = 10000 * 10000;
         if ($imagen['size'] > $medida) {
             $errores[] = 'La Imagen es muy pesada';
         }
@@ -130,7 +130,7 @@
             }
 
             // Insertar en la base de datos
-            $query = " UPDATE propiedades SET titulo = '$titulo', precio = '$precio', imagen = '$nombreImagen', descripcion = '$descripcion', habitaciones = $habitaciones, wc = $wc}, estacionamiento = $estacionamiento, vendedorId = $vendedorId WHERE id = $id ";
+            $query = " UPDATE propiedades SET titulo = '$titulo', precio = '$precio', imagen = '$nombreImagen', descripcion = '$descripcion', habitaciones = $habitaciones, wc = $wc, estacionamiento = $estacionamiento, vendedorId = $vendedorId WHERE id = $id ";
 
             $resultado = mysqli_query($db, $query);
 
