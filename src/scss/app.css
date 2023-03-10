@@ -384,7 +384,7 @@ h4 {
   padding: 1rem 3rem;
   text-align: center;
   margin-top: 2.5rem;
-  display: block;
+  display: inline-block;
   border: none;
 }
 .boton-amarillo:hover {
@@ -400,7 +400,7 @@ h4 {
   padding: 1rem 3rem;
   text-align: center;
   margin-top: 2.5rem;
-  display: inline;
+  display: block;
   border: none;
 }
 .boton-amarillo-block:hover {
@@ -434,6 +434,7 @@ h4 {
   margin-top: 2.5rem;
   display: block;
   border: none;
+  width: 100%;
 }
 .boton-rojo-block:hover {
   background-color: #df2424;
@@ -489,16 +490,16 @@ h4 {
 
 /** UI **/
 .no-webp .inicio {
-  background-image: url("../img/header.jpg");
+  background-image: url(../img/header.jpg);
 }
 
 .webp .inicio {
-  background-image: url("../img/header.webp");
+  background-image: url(../img/header.webp);
 }
 
 .header {
   background-color: #333333;
-  padding: 1rem 0 1rem 0;
+  padding: 1rem 0 3rem 0;
 }
 .header.inicio {
   background-position: center center;
@@ -523,7 +524,8 @@ h4 {
 .contenido-header h1 {
   text-align: left;
   color: #FFFFFF;
-  font-weight: bold;
+  font-weight: 700;
+  line-height: 2;
   max-width: 60rem;
 }
 
@@ -883,4 +885,8 @@ table.propiedades thead th {
 }
 table.propiedades .imagen-tabla {
   width: 10rem;
+}
+
+.imagen-small {
+  width: 30rem;
 }/*# sourceMappingURL=app.css.map */
