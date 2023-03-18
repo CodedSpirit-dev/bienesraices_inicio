@@ -7,7 +7,7 @@ class Propiedad
 
     //Base de datos
     protected static $db;
-    protected static $columnasDB = ['id, titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, creado, vendedorId'];
+    protected static $columnasDB = ['id', 'titulo', 'precio', 'imagen', 'descripcion', 'habitaciones', 'wc', 'estacionamiento', 'creado', 'vendedorId'];
 
     public $id;
     public $titulo;
@@ -47,41 +47,35 @@ class Propiedad
         //Sanitizar los datos
         $atributos = $this->sanitizarAtributos();
 
-        $string =
-
         // Insertar en la base de datos
         $query = " INSERT INTO propiedades ( ";
-        $query .= join(', ', array_keys($atributos));
-        $query .= " ) VALUES ( ";
-        $query .= join(', ', array_values($atributos));
-        $query .= " ) ";
+        $query .= join(', ', array_keys($atributos)); //JOin crea un string apartir de un arreglo. Toma dos parametros, primero el arreglo y luego el arreglo
+        $query .= " ) VALUES (' ";
+        $query .= join("', '", array_values($atributos));
+        $query .= " ') ";
 
         $resultado = self::$db->query($query);
-        debuguear($resultado);
+
 
     }
 
-    //Identificar y unir las columnas de la DB
-
-    public function sanitizarAtributos()
-    {
-        $atributos = $this->atributos();
-        $sanitizado = [];
-
-        foreach ($atributos as $key => $value) {
-            $sanitizado[$key] = self::$db->escape_string($value);
-        }
-        return $sanitizado;
-    }
-
-    public function atributos()
-    {
+    // Identificar y unir los atributos de la BD
+    public function atributos() {
         $atributos = [];
-        foreach (self::$columnasDB as $columna) {
-            if ($columna === 'id') continue;
+        foreach(static::$columnasDB as $columna) {
+            if($columna === 'id') continue;
             $atributos[$columna] = $this->$columna;
         }
         return $atributos;
+    }
+
+    public function sanitizarAtributos() {
+        $atributos = $this->atributos();
+        $sanitizado = [];
+        foreach($atributos as $key => $value ) {
+            $sanitizado[$key] = self::$db->escape_string($value);
+        }
+        return $sanitizado;
     }
 
 }

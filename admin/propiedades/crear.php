@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $habitaciones = mysqli_real_escape_string($db, $_POST['habitaciones']);
     $wc = mysqli_real_escape_string($db, $_POST['wc']);
     $estacionamiento = mysqli_real_escape_string($db, $_POST['estacionamiento']);
-    $vendedorId = mysqli_real_escape_string($db, $_POST['vendedor']);
+    $vendedorId = mysqli_real_escape_string($db, $_POST['vendedorId']);
     $creado = date('Y/m/d');
 
     // Asignar files hacia una variable
