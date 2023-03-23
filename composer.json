@@ -8,7 +8,8 @@
         }
     ],
     "require": {
-        "ext-mysqli": "*"
+        "ext-mysqli": "*",
+        "intervention/image": "^2.7"
     },
     "autoload": {
         "psr-4": {
