@@ -4,6 +4,8 @@
     use Intervention\Image\ImageManagerStatic as Image;
  
     estaAutenticado();
+    // Base de datos
+    $db = conectarDB();
  
     //Instancia de Propiedad
     $propiedad = new Propiedad();
@@ -24,10 +26,10 @@
 
     // Setear la imagen
     // Realiza un resize a la imagen con intervention
-    if($_FILES['imagen']['tmp_name']) {
-        $image = Image::make($_FILES['imagen']['tmp_name'])->fit(800, 600);
-        $propiedad->setImagen($nombreImagen);
-    }
+        if($_FILES['propiedad']['tmp_name']['imagen']) {
+            $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800,600);
+            $propiedad->setImagen($nombreImagen);
+        }
 
 
     // Validar
@@ -70,7 +72,7 @@ incluirTemplate('header');
     <?php endforeach; ?>
 
     <form class="formulario" method="POST" action="/admin/propiedades/crear.php" enctype="multipart/form-data">
-    <?php include '../../includes/templates/formulario_propiedades.php'; ?>
+        <?php include '../../includes/templates/formulario_propiedades.php'; ?>
 
         <input type="submit" value="Crear Propiedad" class="boton boton-verde">
     </form>

@@ -4,5 +4,11 @@
     
     },
     "debug.console.acceptSuggestionOnEnter": "on",
-    "sqltools.connections": []
+    "sqltools.connections": [],
+    "editor.fontFamily": "Hack Nerd Font Mono, Consolas, 'Courier New', monospace",
+    "editor.fontSize": 14,
+    "editor.fontLigatures": true,
+    "editor.wordWrap": "on",
+    "editor.formatOnSave": false,
+    "files.autoSave": "onFocusChange"
 }
