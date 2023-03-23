@@ -1,27 +1,22 @@
-<?php
-
-require '../../includes/app.php';
-
-use App\Propiedad;
-use Intervention\Image\ImageManagerStatic as Image;
-
-estaAutenticado();
-
-// Base de datos
-$db = conectarDB();
-
-// Consultar para obtener los vendedores
-$consulta = "SELECT * FROM vendedores";
-$resultado = mysqli_query($db, $consulta);
-
-// Arreglo con mensajes de errores
-$errores = Propiedad::getErrores();
-
-// Ejecutar el código después de que el usuario envia el formulario
-if($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    // Crear una nueva instancia
-    $propiedad = new Propiedad($_POST);
+<?php 
+    require '../../includes/app.php';
+    use App\Propiedad;
+    use Intervention\Image\ImageManagerStatic as Image;
+ 
+    estaAutenticado();
+ 
+    //Instancia de Propiedad
+    $propiedad = new Propiedad();
+ 
+ 
+    //Arreglo con mensaje de errores 
+    $errores = Propiedad::getErrores();
+ 
+    //Ejecutar el código después de que el usuario envía el formulario
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+ 
+        /* Crea una nueva instancia con lo que se envía desde POST */
+        $propiedad = new Propiedad($_POST['propiedad']);
 
     /** SUBIDA DE ARCHIVOS */
     // Generar un nombre único
