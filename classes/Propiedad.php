@@ -25,6 +25,10 @@ class Propiedad
     public $vendedorId; // id del vendedor de la propiedad
 
     //Definir la conexion en la base de datos
+    public static function setDB($database)
+    {
+        self::$db = $database;
+    }
     public function __construct($args = [])
     {
         $this->id = $args['id'] ?? '';
@@ -37,11 +41,6 @@ class Propiedad
         $this->estacionamiento = $args['estacionamiento'] ?? '';
         $this->creado = date('Y/m/d');
         $this->vendedorId = $args['vendedorId'] ?? 1;
-    }
-
-    public static function setDB($database)
-    {
-        self::$db = $database; // establece la conexión de la base de datos mediante la instancia de la clase `mysqli`
     }
 
     public function guardar()
@@ -61,10 +60,10 @@ class Propiedad
         return $resultado;
     }
 
-    // Identificar y unir los atributos de la BD
+    // Identificar y unir los atributos de la DB
     public function atributos() {
         $atributos = [];
-        foreach(static::$columnasDB as $columna) {
+        foreach(self::$columnasDB as $columna) {
             if($columna === 'id') continue;
             $atributos[$columna] = $this->$columna;
         }
@@ -74,15 +73,16 @@ class Propiedad
     public function sanitizarAtributos() {
         $atributos = $this->atributos();
         $sanitizado = [];
-        foreach($atributos as $key => $value ) {
+ 
+        foreach($atributos as $key => $value) {
             $sanitizado[$key] = self::$db->escape_string($value);
         }
         return $sanitizado;
     }
-
-    //Subida de archivos
+ 
+    // Subida de archivos
     public function setImagen($imagen) {
-        //Asignar al atributo de imagen el nombre de la imagen
+        // Asignar al atributo de imagen el nombre de la imagen
         if($imagen) {
             $this->imagen = $imagen;
         }
@@ -146,7 +146,7 @@ class Propiedad
         //Iterar los resultados
         $array = [];
         while ($registro = $resultado->fetch_assoc()) {
-            $array[] = static::crearObjeto($registro);
+            $array[] = self::crearObjeto($registro);
         }
 
 
