@@ -18,71 +18,66 @@
     //Arreglo con mensaje de errores 
     $errores = Propiedad::getErrores();
  
-    //Ejecutar el código después de que el usuario envía el formulario
+    // Ejecutar el código después de que el usuario envia el formulario
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
- 
-            /* Crea una nueva instancia con lo que se envía desde POST */
-            $propiedad = new Propiedad($_POST['propiedad']);
 
-            /** SUBIDA DE ARCHIVOS */
-            // Generar un nombre único
-            $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+        /** Crea una nueva instancia */
+        $propiedad = new Propiedad($_POST['propiedad']);
 
-            // Setear la imagen
-            // Realiza un resize a la imagen con intervention
-                if($_FILES['imagen']['tmp_name']) {
-                    $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800,600);
-                    $propiedad->setImagen($nombreImagen);
-                }
+        // Generar un nombre único
+        $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
 
-            // Validar
-            $errores = $propiedad->validar();
-
-            if (empty($errores)) {
-
-
-                // Crear carpeta
-                if(!is_dir(CARPETA_IMAGENES)) {
-                    mkdir(CARPETA_IMAGENES);
-                }
-
-                //Guarda la imagen en el servidor
-                $image->save(CARPETA_IMAGENES . $nombreImagen);
-
-                //Guarda en la base de datos
-                $resultado = $propiedad->guardar();
-
-
-                //Mensaje de confirmación
-                if($resultado) {
-                    header('Location: /admin?resultado=1');
-                }
-            }
+        // Setear la imagen
+        // Realiza un resize a la imagen con intervention
+        if($_FILES['propiedad']['tmp_name']['imagen']) {
+            $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800,600);
+            $propiedad->setImagen($nombreImagen);
         }
+        
+        // Validar
+        $errores = $propiedad->validar();
 
-incluirTemplate('header');
+        if(empty($errores)) {
+        
+            // Crear la carpeta para subir imagenes
+            if(!is_dir(CARPETA_IMAGENES)) {
+                mkdir(CARPETA_IMAGENES);
+            }
+
+            // Guarda la imagen en el servidor
+            $image->save(CARPETA_IMAGENES . $nombreImagen);
+
+            // Guarda en la base de datos
+            $propiedad->guardar();
+
+            
+        }
+    }
+
+    incluirTemplate('header');
 ?>
 
-<main class="contenedor seccion">
-    <h1>Crear</h1>
+    <main class="contenedor seccion">
+        <h1>Crear</h1>
 
+        
 
-    <a href="/admin" class="boton boton-verde">Volver</a>
+        <a href="/admin" class="boton boton-verde">Volver</a>
 
-    <?php foreach ($errores as $error): ?>
+        <?php foreach($errores as $error): ?>
         <div class="alerta error">
             <?php echo $error; ?>
         </div>
-    <?php endforeach; ?>
+        <?php endforeach; ?>
 
-    <form class="formulario" method="POST" action="/admin/propiedades/crear.php" enctype="multipart/form-data">
-        <?php include '../../includes/templates/formulario_propiedades.php'; ?>
+        <form class="formulario" method="POST" action="/admin/propiedades/crear.php" enctype="multipart/form-data">
+            <?php include '../../includes/templates/formulario_propiedades.php'; ?>
 
-        <input type="submit" value="Crear Propiedad" class="boton boton-verde">
-    </form>
+            <input type="submit" value="Crear Propiedad" class="boton boton-verde">
+        </form>
+        
+    </main>
 
-</main>
-
-<?php
-incluirTemplate('footer');
+<?php 
+    incluirTemplate('footer');
 ?> 
