@@ -26,3 +26,9 @@ function s($html) : string {
     $s = htmlspecialchars($html);
     return $s;
 }
+
+//Valida un tipo de contenido por ID de un arreglo
+function validarTipoContenido(string $tipo) : string {
+    $tipos = ['vendedor', 'propiedad'];
+    return in_array($tipo, $tipos) ? $tipo : '';
+}
