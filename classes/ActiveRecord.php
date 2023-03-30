@@ -124,45 +124,13 @@ class ActiveRecord
 
     //Validacion
     public static function getErrores() {
-        return self::$errores;
+
+        return static::$errores;
     }
 
     public function validar() {
-
-        if (!$this->titulo) {
-            self::$errores[] = "Debes añadir un titulo"; // agrega un error al arreglo `$errores` si el atributo `titulo` está vacío
-        }
-
-        if (!$this->precio) {
-            self::$errores[] = 'El Precio es Obligatorio'; // agrega un error al arreglo `$errores` si el atributo `precio` está vacío
-        }
-
-        if (strlen($this->descripcion) < 50) {
-            self::$errores[] = 'La descripción es obligatoria y debe tener al menos 50 caracteres'; // agrega un error al arreglo `$errores` si el atributo `descripcion` tiene menos de 50 caracteres
-        }
-
-        if (!$this->habitaciones) {
-            self::$errores[] = 'El Número de habitaciones es obligatorio'; // agrega un error al arreglo `$errores` si el atributo `habitaciones` está vacío
-        }
-
-        if (!$this->wc) {
-            self::$errores[] = 'El Número de Baños es obligatorio'; // agrega un error al arreglo `$errores` si el atributo `wc` está vacío
-        }
-
-        if (!$this->estacionamiento) {
-            self::$errores[] = 'El Número de lugares de Estacionamiento es obligatorio'; // agrega un error al arreglo `$errores` si el atributo `estacionamiento` está vacío
-        }
-
-        if (!$this->vendedorId) {
-            self::$errores[] = 'Elige un vendedor'; // agrega un error al arreglo `$errores` si el atributo `vendedorId` está vacío
-        }
-
-        if (!$this->imagen) {
-            self::$errores[] = 'La Imagen es Obligatoria'; // agrega un error al arreglo `$errores` si el atributo `imagen` está vacío
-        }
-
-        return self::$errores; // retorna los errores de validación almacenados en el arreglo `$errores`
-
+        static::$errores = [];
+        return static::$errores; // retorna los errores de validación almacenados en el arreglo `$errores`
     }
 
     //Lista todas las propiedades

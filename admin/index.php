@@ -8,7 +8,7 @@ use App\Vendedor;
 
 //Implementar un metodo para obtener todas las propiedades
 $propiedades = Propiedad::all();
-$vendedor = Vendedor::all();
+$vendedores = Vendedor::all();
 
 //Muestra mensaje condicional
 $resultado = $_GET['resultado'] ?? null;
