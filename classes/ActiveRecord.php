@@ -140,6 +140,14 @@ class ActiveRecord
         return $resultado; // retorna un arreglo de objetos de tipo `Propiedad`
     }
 
+    //Obtiene determinada cantidad de propiedades
+    public static function get($cantidad)
+    {
+        $query = "SELECT * FROM " . static::$tabla . " LIMIT " . $cantidad; // consulta SQL para seleccionar todas las propiedades en la tabla `propiedades`
+        $resultado = self::consultarSQL($query); // llama al método `consultarSQL` para ejecutar la consulta
+        return $resultado; // retorna un arreglo de objetos de tipo `Propiedad`
+    }
+
     //Buscar una propiedad por su id
     public static function find($id){
         $query = "SELECT * FROM "  . static::$tabla  .  " WHERE id = $id";
